@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "urirun-api-a2a"
+version = "0.1.0"
+description = "A2A adapter exposing urirun runtime registry as an agent card"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.31",
+  "python-dotenv>=1.0",
+]
+
+[project.scripts]
+urirun-api-a2a = "urirun_api_a2a.server:main"
+
+[tool.setuptools]
+packages = ["urirun_api_a2a"]
