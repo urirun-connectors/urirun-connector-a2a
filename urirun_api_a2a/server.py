@@ -73,7 +73,7 @@ def run_uri(uri: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
     return resp.json()
 
 
-class Handler(BaseHTTPRequestHandler):
+class A2ARequestHandler(BaseHTTPRequestHandler):
     server_version = "urirun-api-a2a/0.1.0"
 
     def _json(self, code: int, body: dict[str, Any]) -> None:
@@ -106,7 +106,7 @@ class Handler(BaseHTTPRequestHandler):
 def main() -> int:
     host = os.environ.get("URIRUN_API_A2A_HOST") or "0.0.0.0"
     port = int(os.environ.get("URIRUN_API_A2A_PORT") or "8091")
-    server = ThreadingHTTPServer((host, port), Handler)
+    server = ThreadingHTTPServer((host, port), A2ARequestHandler)
     print(f"urirun-api-a2a listening on http://{host}:{port}")
     server.serve_forever()
     return 0
