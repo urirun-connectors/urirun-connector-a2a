@@ -1,6 +1,8 @@
-# urirun-api-a2a
+# urirun-connector-a2a
 
-Thin A2A adapter for `urirun`.
+Thin A2A connector for `urirun`.
+
+The import path `urirun_api_a2a` and command `urirun-api-a2a` remain available for backward compatibility. New integrations should use `urirun-connector-a2a`.
 
 It publishes an Agent Card derived from the live `urirun` runtime registry and forwards JSON invocations to `POST /run`.
 
@@ -20,7 +22,7 @@ Main variables:
 ```bash
 cp .env.example .env
 pip install -e .
-python -m urirun_api_a2a.server
+urirun-connector-a2a
 ```
 
 Endpoints:

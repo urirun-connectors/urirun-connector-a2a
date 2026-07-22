@@ -54,10 +54,10 @@ def agent_card() -> dict[str, Any]:
         })
     host = os.environ.get("URIRUN_API_A2A_PUBLIC_URL") or f"http://{os.environ.get('URIRUN_API_A2A_HOST', '127.0.0.1')}:{os.environ.get('URIRUN_API_A2A_PORT', '8091')}"
     return {
-        "name": "urirun-api-a2a",
+        "name": "urirun-connector-a2a",
         "description": "A2A gateway over urirun runtime registry",
         "url": host,
-        "version": "0.1.0",
+        "version": "0.2.0",
         "capabilities": {"streaming": False, "pushNotifications": False},
         "defaultInputModes": ["application/json"],
         "defaultOutputModes": ["application/json"],
@@ -74,7 +74,7 @@ def run_uri(uri: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
 
 
 class A2ARequestHandler(BaseHTTPRequestHandler):
-    server_version = "urirun-api-a2a/0.1.0"
+    server_version = "urirun-connector-a2a/0.2.0"
 
     def _json(self, code: int, body: dict[str, Any]) -> None:
         raw = json.dumps(body, ensure_ascii=False).encode()
@@ -107,7 +107,7 @@ def main() -> int:
     host = os.environ.get("URIRUN_API_A2A_HOST") or "0.0.0.0"
     port = int(os.environ.get("URIRUN_API_A2A_PORT") or "8091")
     server = ThreadingHTTPServer((host, port), A2ARequestHandler)
-    print(f"urirun-api-a2a listening on http://{host}:{port}")
+    print(f"urirun-connector-a2a listening on http://{host}:{port}")
     server.serve_forever()
     return 0
 
